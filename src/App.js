@@ -5,8 +5,16 @@ import "./App.css";
 function App() {
    	const [data, setData] = useState([]);
 
+  let backedEndUrl = ''
+
+  if(process.env.BACKEND_URL){
+    backedEndUrl = process.env.BACKEND_URL;
+  } else {
+    backedEndUrl = 'url nao definida'
+  }
+
 	useEffect(() => {
-		fetch("$BACKEND_URL")
+		fetch(backedEndUrl)
 		 .then((res) => res.json())
       		 .then((result) => setData(result))
       		 .catch((err) => console.log("error"));
